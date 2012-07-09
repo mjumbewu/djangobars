@@ -1,0 +1,7 @@
+django
+pybars
+
+# ==========
+# Testing
+# ==========
+nose
