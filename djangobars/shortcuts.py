@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404, get_list_or_404
 from django.template import RequestContext
-from .loader import render_to_string
+from .template.loader import render_to_string
 
 def render_to_response(*args, **kwargs):
     """

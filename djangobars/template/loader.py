@@ -1,7 +1,7 @@
 from django.template import Context, RequestContext
 from django.template.base import TemplateDoesNotExist
 from django.template.loader import find_template
-from .template import HandlebarsTemplate
+from .base import HandlebarsTemplate
 
 def get_template(template_name):
     """

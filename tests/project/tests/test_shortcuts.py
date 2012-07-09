@@ -1,5 +1,5 @@
 from django.test import TestCase, Client, RequestFactory
-from django.template import Context
+from djangobars.template import Context
 from djangobars.shortcuts import render, render_to_response
 from nose.tools import *
 
