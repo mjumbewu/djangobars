@@ -47,3 +47,4 @@ STATICFILES_FINDERS = (
 
 SITE_ID = 1
 ROOT_URLCONF = 'project.urls'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

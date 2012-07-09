@@ -5,3 +5,4 @@ pybars
 # Testing
 # ==========
 nose
+django-nose
