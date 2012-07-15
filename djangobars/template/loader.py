@@ -1,7 +1,50 @@
+from django.conf import settings
 from django.template import Context, RequestContext
 from django.template.base import TemplateDoesNotExist
-from django.template.loader import find_template
+from django.template.loader import find_template_loader, BaseLoader, make_origin
 from .base import HandlebarsTemplate
+
+template_source_loaders = None
+
+class BaseHandlebarsLoader(BaseLoader):
+    """
+    Base loader for Handlebars templates.  Just override the load_template method
+    to use the get_template_from_string method in the djangobars.template.loader 
+    module instead of the one in the core Django template codebase.
+    """
+
+    def load_template(self, template_name, template_dirs=None):
+        source, display_name = self.load_template_source(template_name, template_dirs)
+        origin = make_origin(display_name, self.load_template_source, template_name, template_dirs)
+        try:
+            template = get_template_from_string(source, origin, template_name)
+            return template, None
+        except TemplateDoesNotExist:
+            # If compiling the template we found raises TemplateDoesNotExist, back off to
+            # returning the source and display name for the template we were asked to load.
+            # This allows for correct identification (later) of the actual template that does
+            # not exist.
+            return source, display_name
+
+def find_template(name, dirs=None):
+    # Calculate template_source_loaders the first time the function is executed
+    # because putting this logic in the module-level namespace may cause
+    # circular import errors. See Django ticket #1292.
+    global template_source_loaders
+    if template_source_loaders is None:
+        loaders = []
+        for loader_name in settings.HANDLEBARS_LOADERS:
+            loader = find_template_loader(loader_name)
+            if loader is not None:
+                loaders.append(loader)
+        template_source_loaders = tuple(loaders)
+    for loader in template_source_loaders:
+        try:
+            source, display_name = loader(name, dirs)
+            return (source, make_origin(display_name, loader, name, dirs))
+        except TemplateDoesNotExist:
+            pass
+    raise TemplateDoesNotExist(name)
 
 def get_template(template_name):
     """
