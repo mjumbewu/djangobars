@@ -12,6 +12,19 @@ Installation
 
 2. Add ``'djangobars'`` to your installed applications.
 
+3. Add a ``HANDLEBARS_LOADERS`` value to your settings module.  You will probably
+   want::
+
+       HANDLEBARS_LOADERS = (
+           'djangobars.template.loaders.filesystem.Loader',
+           'djangobars.template.loaders.app_directories.Loader',
+       )
+
+4. *(optional)* Add a ``HANDLEBARS_DIRS`` value to your setting module.  By default,
+   djangobars will search in your ``TEMPLATE_DIRS`` folder, but you can use the
+   ``HANDLEBARS_DIRS`` value to override this behavior.
+
+
 Usage
 -----
 
