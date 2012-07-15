@@ -31,7 +31,16 @@ class Test_render (TestCase):
         self.request = RequestFactory()
         self.request.user = user
 
+    def tearDown(self):
+        from django.contrib.auth.models import User
+        User.objects.all().delete()
+
     @istest
     def uses_request_context_variables(self):
         response = render(self.request, template_name="hello3.txt")
-        assert_equal(response.content, 'Hello, Mjumbe!\n')
+        assert_equal(response.content, 'Hello, mjumbewu!\n')
+
+    @istest
+    def uses_helper_functions(self):
+        response = render(self.request, template_name="hello4.txt")
+        assert_equal(response.content, 'Hello, mjumbewu, go to /blank_url!\n')

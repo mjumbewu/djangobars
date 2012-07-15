@@ -22,7 +22,7 @@ def rel_path(*subs):
     root_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(root_path, '..', *subs)
 
-TEMPLATE_DIRS = rel_path('templates'),
+HANDLEBARS_DIRS = rel_path('templates'),
 HANDLEBARS_LOADERS = (
     'djangobars.template.loaders.filesystem.Loader',
     'djangobars.template.loaders.app_directories.Loader',

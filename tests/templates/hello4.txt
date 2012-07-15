@@ -1,0 +1,1 @@
+Hello, {{ user }}, go to {{ url "blank" }}!

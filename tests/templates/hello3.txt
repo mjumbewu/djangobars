@@ -1,1 +1,1 @@
-Hello, {{ user.first_name }}!
+Hello, {{ user }}!
