@@ -1,5 +1,5 @@
 from django.template import Node, Variable, TemplateSyntaxError
-from djangobars.template.loader import get_template
+from ..template.loader import get_template
 
 register = template.Library()
 
