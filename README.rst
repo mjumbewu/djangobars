@@ -65,3 +65,14 @@ do this::
     class MyView (TemplateView):
         template_name = 'myapp/handlebar_index.html'
         response_class = HandlebarsResponse
+
+Template Tags
+-------------
+
+You can also include Handlebars templates with a Django template tag::
+
+    {% load djangobars %}
+
+    {% include_handlebars "handlebars_template_name.html" %}
+
+The current template context will be carried over into the Handlebars template.
