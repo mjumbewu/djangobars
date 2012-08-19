@@ -1,7 +1,7 @@
-from django.template import Node, Variable, TemplateSyntaxError
+from django.template import Node, Variable, TemplateSyntaxError, Library
 from ..template.loader import get_template
 
-register = template.Library()
+register = Library()
 
 
 class IncludeHandlebarsNode (Node):
