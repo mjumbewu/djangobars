@@ -26,6 +26,7 @@ setup(
     author_email="mjumbewu@gmail.com",
     url="https://github.com/mjumbewu/djangobars/",
     packages=find_packages(),
+    install_requires=["pybars"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
