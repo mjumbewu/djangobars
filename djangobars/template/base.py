@@ -3,7 +3,8 @@ from .helpers import _djangobars_
 
 
 class HandlebarsTemplate (object):
-    def __init__(self, template_string, origin=None, name='<Handlebars Template>'):
+    def __init__(self, template_string, origin=None,
+                 name='<Handlebars Template>'):
         c = pybars.Compiler()
         self.handlebars = c.compile(template_string)
         self.name = name

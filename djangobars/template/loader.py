@@ -1,30 +1,35 @@
 from django.conf import settings
 from django.template import Context, RequestContext
 from django.template.base import TemplateDoesNotExist
-from django.template.loader import find_template_loader, BaseLoader, make_origin
+from django.template.loader import (find_template_loader, BaseLoader,
+                                    make_origin)
 from .base import HandlebarsTemplate
 
 template_source_loaders = None
 
+
 class BaseHandlebarsLoader(BaseLoader):
     """
-    Base loader for Handlebars templates.  Just override the load_template method
-    to use the get_template_from_string method in the djangobars.template.loader 
+    Base loader for Handlebars templates. Just override the load_template method
+    to use the get_template_from_string method in the djangobars.template.loader
     module instead of the one in the core Django template codebase.
     """
 
     def load_template(self, template_name, template_dirs=None):
-        source, display_name = self.load_template_source(template_name, template_dirs)
-        origin = make_origin(display_name, self.load_template_source, template_name, template_dirs)
+        source, display_name = self.load_template_source(template_name,
+                                                         template_dirs)
+        origin = make_origin(display_name, self.load_template_source,
+                             template_name, template_dirs)
         try:
             template = get_template_from_string(source, origin, template_name)
             return template, None
         except TemplateDoesNotExist:
-            # If compiling the template we found raises TemplateDoesNotExist, back off to
-            # returning the source and display name for the template we were asked to load.
-            # This allows for correct identification (later) of the actual template that does
-            # not exist.
+            # If compiling the template we found raises TemplateDoesNotExist,
+            # back off to returning the source and display name for the template
+            # we were asked to load. This allows for correct identification
+            # (later) of the actual template that does not exist.
             return source, display_name
+
 
 def find_template(name, dirs=None):
     # Calculate template_source_loaders the first time the function is executed
@@ -46,6 +51,7 @@ def find_template(name, dirs=None):
             pass
     raise TemplateDoesNotExist(name)
 
+
 def get_template(template_name):
     """
     Returns a compiled Template object for the given template name,
@@ -57,12 +63,14 @@ def get_template(template_name):
         template = get_template_from_string(template, origin, template_name)
     return template
 
+
 def get_template_from_string(source, origin=None, name=None):
     """
     Returns a compiled Template object for the given template code,
     handling template inheritance recursively.
     """
     return HandlebarsTemplate(source, origin, name)
+
 
 def select_template(template_name_list):
     "Given a list of template names, returns the first that can be loaded."
@@ -78,6 +86,7 @@ def select_template(template_name_list):
             continue
     # If we get here, none of the templates could be loaded
     raise TemplateDoesNotExist(', '.join(not_found))
+
 
 def render_to_string(template_name, dictionary=None, context_instance=None):
     """
