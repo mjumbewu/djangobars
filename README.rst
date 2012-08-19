@@ -1,9 +1,11 @@
 djangobars
 ==========
 
-An extension to allow Django to use Handlebars templates through the pybars port of Handlebars.js
+An extension to allow Django to use Handlebars templates through the pybars port
+of Handlebars.js
 
-Because don't we all want to use the same templates on the client that we do on the server?
+Because don't we all want to use the same templates on the client that we do on
+the server?
 
 Installation
 ------------
@@ -12,7 +14,7 @@ Installation
 
 2. Add ``'djangobars'`` to your installed applications.
 
-3. Add a ``HANDLEBARS_LOADERS`` value to your settings module.  You will probably
+3. Add a ``HANDLEBARS_LOADERS`` value to your settings module. You will probably
    want::
 
        HANDLEBARS_LOADERS = (
@@ -20,9 +22,11 @@ Installation
            'djangobars.template.loaders.app_directories.Loader',
        )
 
-4. *(optional)* Add a ``HANDLEBARS_DIRS`` value to your setting module.  By default,
-   djangobars will search in your ``TEMPLATE_DIRS`` folder, but you can use the
-   ``HANDLEBARS_DIRS`` value to override this behavior.
+4. *(optional)* Add a ``HANDLEBARS_DIRS`` value to your setting module. By
+   default, djangobars will search in your ``TEMPLATE_DIRS`` folder, but you can
+   use the ``HANDLEBARS_DIRS`` value to override this behavior. For example, if
+   you want to use both Django templates and Handlebars templates, you may want
+   to keep the two in separate directories.
 
 
 Usage
@@ -56,7 +60,7 @@ And instead of::
 do this::
 
     from django.views.generic import TemplateView
-    from djangobars.resonse import HandlebarsResponse
+    from djangobars.response import HandlebarsResponse
 
     class MyView (TemplateView):
         template_name = 'myapp/handlebar_index.html'
