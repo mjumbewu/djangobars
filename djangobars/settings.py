@@ -5,5 +5,13 @@ HANDLEBARS_LOADERS = getattr(settings, 'HANDLEBARS_LOADERS', (
     'djangobars.template.loaders.app_directories.Loader',
 ))
 
-# A value of None should make HANDLEBARS_DIRS mimic TEMPLATE_DIRS
-HANDLEBARS_DIRS = getattr(settings, 'HANDLEBARS_DIRS', None)
+# If not present, HANDLEBARS_DIRS will mimic TEMPLATE_DIRS
+if hasattr(settings, 'HANDLEBARS_DIRS'):
+    HANDLEBARS_DIRS = settings.HANDLEBARS_DIRS
+
+# If not present, HANDLEBARS_APP_DIRNAME will be 'templates'
+if hasattr(settings, 'HANDLEBARS_APP_DIRNAME'):
+    HANDLEBARS_DIRS = settings.HANDLEBARS_APP_DIRNAME
+
+if hasattr(settings, 'INSTALLED_APPS'):
+    INSTALLED_APPS = settings.INSTALLED_APPS
