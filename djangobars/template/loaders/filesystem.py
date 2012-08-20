@@ -1,5 +1,5 @@
-from django.conf import settings
 from django.template.loaders.filesystem import Loader as CoreLoader
+from djangobars import settings
 from djangobars.template.loader import BaseHandlebarsLoader
 
 class Loader(BaseHandlebarsLoader, CoreLoader):
@@ -13,4 +13,3 @@ class Loader(BaseHandlebarsLoader, CoreLoader):
         dirs = getattr(settings, 'HANDLEBARS_DIRS', None)
         return super(Loader, self).get_template_sources(template_name,
                                                         template_dirs=dirs)
-

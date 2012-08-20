@@ -1,9 +1,11 @@
-from django.conf import settings
 from django.template import Context, RequestContext
 from django.template.base import TemplateDoesNotExist
 from django.template.loader import (find_template_loader, BaseLoader,
                                     make_origin)
+
+from .. import settings
 from .base import HandlebarsTemplate
+
 
 template_source_loaders = None
 

@@ -8,3 +8,6 @@ django-admin.py test project --settings=project.settings $@
 
 # Make sure things work with handlebars-specific settings
 django-admin.py test project --settings=project.settings_handlebars $@
+
+# Make sure default settings are reasonable
+django-admin.py test project --settings=project.settings_defaults $@
