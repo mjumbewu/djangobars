@@ -11,7 +11,7 @@ if hasattr(settings, 'HANDLEBARS_DIRS'):
 
 # If not present, HANDLEBARS_APP_DIRNAME will be 'templates'
 if hasattr(settings, 'HANDLEBARS_APP_DIRNAME'):
-    HANDLEBARS_DIRS = settings.HANDLEBARS_APP_DIRNAME
+    HANDLEBARS_APP_DIRNAME = settings.HANDLEBARS_APP_DIRNAME
 
 if hasattr(settings, 'INSTALLED_APPS'):
     INSTALLED_APPS = settings.INSTALLED_APPS
