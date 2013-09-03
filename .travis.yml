@@ -1,0 +1,41 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+  - "3.2"
+  - "3.3"
+
+env:
+  - DJANGO="django<1.5"  # 1.4.x
+  - DJANGO="django<1.6"  # 1.5.x
+  - DJANGO="git+git://github.com/django/django.git@master#egg=django"
+
+# command to install dependencies
+install:
+  - pip install $DJANGO --use-mirrors
+  - pip install -r requirements.txt --use-mirrors
+
+# command to run tests
+script:
+  - export PYTHONPATH=.:./tests:$PYTHONPATH
+  # Make sure things work with template-generic settings
+  - coverage run --module django-admin test project --settings=project.settings
+  # Make sure things work with handlebars-specific settings
+  - coverage run --append --module django-admin test project --settings=project.settings_handlebars
+  # Make sure default settings are reasonable
+  - coverage run --append --module django-admin test project --settings=project.settings_defaults
+after_success:
+  - coverage report --include=jstemplate/*
+  - pip install --quiet python-coveralls
+  - coveralls
+
+matrix:
+  exclude:
+    - python: "3.2"
+      env: DJANGO="django<1.4"
+    - python: "3.3"
+      env: DJANGO="django<1.4"
+    - python: "3.2"
+      env: DJANGO="django<1.5"
+    - python: "3.3"
+      env: DJANGO="django<1.5"
