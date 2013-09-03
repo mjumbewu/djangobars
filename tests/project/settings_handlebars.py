@@ -37,6 +37,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+SECRET_KEY = 'testkey'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = rel_path('static'),
 STATICFILES_FINDERS = (

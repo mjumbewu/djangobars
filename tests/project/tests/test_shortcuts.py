@@ -18,6 +18,13 @@ class Test_renderToResponse (TestCase):
                                       context_instance=context)
         assert_equal(response.content, 'Hello, Mjumbe!\n')
 
+    @istest
+    def renders_simple_greeting_with_partial(self):
+        context = Context({'name': 'Mjumbe'})
+        response = render_to_response(template_name="hello5.txt",
+                                      context_instance=context)
+        assert_equal(response.content, 'Hello, Mjumbe, nice to meet you!\n')
+
 
 class Test_render (TestCase):
 
