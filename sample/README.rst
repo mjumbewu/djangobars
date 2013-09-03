@@ -4,10 +4,12 @@ Unifying Back-/Front-end Templates in Django
 This sample uses the following libraries:
 
 - **Django apps**:
+
   * djangobars (pybars + Django tags)
   * django-jstemplates
 
 - **JavaScript libraries**:
+
   * jquery
   * handlebars.js
   * backbone.js (and underscore.js)
