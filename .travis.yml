@@ -25,7 +25,7 @@ script:
   # Make sure default settings are reasonable
   - coverage run --append --module django-admin test project --settings=project.settings_defaults
 after_success:
-  - coverage report --include=jstemplate/*
+  - coverage report --include=djangobars/*
   - pip install --quiet python-coveralls
   - coveralls
 

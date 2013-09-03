@@ -14,6 +14,7 @@ sdist
 develop-eggs
 .installed.cfg
 env/
+sample/sample/static/components/
 
 # Installer logs
 pip-log.txt

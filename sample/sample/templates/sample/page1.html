@@ -1,0 +1,14 @@
+{% extends 'sample/base.html' %}
+{% load include_handlebars from djangobars %}
+
+{% block title %}
+  {% include_handlebars 'page1-title-tpl.html' %}
+{% endblock %}
+
+{% block content %}
+  {% include_handlebars 'pages-tabs-tpl.html' %}
+
+  <div id="content-region">
+    {% include_handlebars 'page1-tpl.html' %}
+  </div>
+{% endblock %}

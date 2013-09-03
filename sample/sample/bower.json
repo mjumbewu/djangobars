@@ -1,0 +1,11 @@
+{
+  "name": "sample",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~2.0.2",
+    "underscore": "~1.4.4",
+    "backbone": "~1.0.0",
+    "backbone.marionette": "~1.0.3",
+    "handlebars.js": "~1.0.12"
+  }
+}

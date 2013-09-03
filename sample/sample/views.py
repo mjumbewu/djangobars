@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.views.generic import TemplateView
 
-def post_index(request):
-    posts_list = [1,2,3,4,5]
-    return render(request,'posts.html',{'posts': posts_list})
+page1_view = TemplateView.as_view(template_name='sample/page1.html')
+page2_view = TemplateView.as_view(template_name='sample/page2.html')

@@ -1,0 +1,32 @@
+{% load handlebarsjs from jstemplate %}
+
+<html>
+  <head>
+    <title>
+
+      {% block title %}{% endblock %}
+
+    </title>
+  </head>
+
+  <body>
+
+    <div class="content">
+
+      {% block content %}{% endblock %}
+      <p>Django last rendered this page at: {% now 'DATETIME_FORMAT' %}</p>
+
+    </div>
+
+    <script src="{{ STATIC_URL }}components/jquery/jquery.js"></script>
+    <script src="{{ STATIC_URL }}components/underscore/underscore-min.js"></script>
+    <script src="{{ STATIC_URL }}components/backbone/backbone.js"></script>
+    <script src="{{ STATIC_URL }}components/backbone.marionette/lib/backbone.marionette.js"></script>
+    <script src="{{ STATIC_URL }}components/handlebars.js/dist/handlebars.js"></script>
+    {% handlebarsjs '(.*)' precompile register_partials %}
+
+    <script src="{{ STATIC_URL }}sample/views.js"></script>
+    <script src="{{ STATIC_URL }}sample/app.js"></script>
+
+  </body>
+</html>

@@ -6,3 +6,5 @@ pybars
 # ==========
 nose
 django-nose
+mock
+coverage
