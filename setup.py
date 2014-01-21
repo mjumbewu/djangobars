@@ -8,6 +8,11 @@ long_description = (open(join(here, "README.rst")).read() + "\n\n" +
                     open(join(here, "CHANGES.rst")).read() + "\n\n" +
                     open(join(here, "TODO.rst")).read())
 
+dependency_links = [
+    'git+https://github.com/mjumbewu/pymeta.git@1567444#egg=pymeta',
+    'git+https://github.com/mjumbewu/pybars.git@4c8d619#egg=pybars',
+]
+
 def get_version():
     fh = open(join(here, "djangobars", "__init__.py"))
     try:
@@ -26,7 +31,7 @@ setup(
     author_email="mjumbewu@gmail.com",
     url="https://github.com/mjumbewu/djangobars/",
     packages=find_packages(),
-    install_requires=["pybars"],
+    install_requires=["pymeta", "pybars"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
@@ -35,8 +40,9 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
         "Framework :: Django",
     ],
 )
