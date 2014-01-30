@@ -1,6 +1,11 @@
 import pybars
 from .helpers import _djangobars_
 
+try:
+    strtype = unicode
+except NameError:
+    strtype = str
+
 
 class HandlebarsTemplate (object):
     PARTIALS = {}
@@ -22,10 +27,10 @@ class HandlebarsTemplate (object):
         try:
             s = self.fn(
                 context, helpers=self.helpers, partials=self.partials)
-            return unicode(s)
-        except KeyError, e:
+            return strtype(s)
+        except KeyError as e:
             from djangobars.template.loader import get_template
-            partial_name = str(e).strip("'")
+            partial_name = strtype(e).strip("'")
             template = get_template(partial_name)
             self.partials[partial_name] = template.fn
             return self.render(context)
