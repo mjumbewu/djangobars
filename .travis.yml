@@ -17,11 +17,11 @@ install:
 script:
   - export PYTHONPATH=.:./tests:$PYTHONPATH
   # Make sure things work with template-generic settings
-  - coverage run --module django-admin test project --settings=project.settings
+  - coverage run tests/manage.py test project --settings=project.settings
   # Make sure things work with handlebars-specific settings
-  - coverage run --append --module django-admin test project --settings=project.settings_handlebars
+  - coverage run --append tests/manage.py test project --settings=project.settings_handlebars
   # Make sure default settings are reasonable
-  - coverage run --append --module django-admin test project --settings=project.settings_defaults
+  - coverage run --append tests/manage.py test project --settings=project.settings_defaults
 after_success:
   - coverage report --include=djangobars/*
   - pip install --quiet python-coveralls
