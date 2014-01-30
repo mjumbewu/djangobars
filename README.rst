@@ -27,7 +27,8 @@ Installation
            'djangobars.template.loaders.app_directories.Loader',
        )
 
-4. *(optional)* Add a ``HANDLEBARS_DIRS`` value to your setting module. By
+4. *(optional)* Add a ``HANDLEBARS_DIRS`` and/or ``HANDLEBARS_APP_DIRNAMES``
+   value to your setting module. By
    default, djangobars will search in your ``TEMPLATE_DIRS`` folder, but you can
    use the ``HANDLEBARS_DIRS`` value to override this behavior. For example, if
    you want to use both Django templates and Handlebars templates, you may want
