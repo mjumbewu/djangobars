@@ -9,8 +9,8 @@ long_description = (open(join(here, "README.rst")).read() + "\n\n" +
                     open(join(here, "TODO.rst")).read())
 
 dependency_links = [
-    'git+https://github.com/mjumbewu/pymeta.git@1567444#egg=pymeta',
-    'git+https://github.com/mjumbewu/pybars.git@4c8d619#egg=pybars',
+    'git+git://github.com/mjumbewu/pymeta.git@master#egg=pymeta-0.5.0',
+    'git+git://github.com/mjumbewu/pybars.git@master#egg=pybars-0.1.0',
 ]
 
 def get_version():
@@ -31,7 +31,11 @@ setup(
     author_email="mjumbewu@gmail.com",
     url="https://github.com/mjumbewu/djangobars/",
     packages=find_packages(),
-    install_requires=["pymeta", "pybars"],
+    dependency_links=dependency_links,
+    install_requires=[
+        "pymeta==0.5.0",
+        "pybars==0.1.0"
+    ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
