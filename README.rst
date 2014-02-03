@@ -7,7 +7,8 @@ of Handlebars.js
 Because don't we all want to use the same templates on the client that we do on
 the server?
 
-.. image:: https://travis-ci.org/mjumbewu/djangobars.png?branch=master   :target: https://travis-ci.org/mjumbewu/djangobars
+.. image:: https://travis-ci.org/mjumbewu/djangobars.png?branch=master
+  :target: https://travis-ci.org/mjumbewu/djangobars
 
 **NOTE: This project is very early-stage.  Try it out, leave feedback and wishes 
 in the issues.  And pull-requests welcome!**
