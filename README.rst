@@ -16,7 +16,15 @@ in the issues.  And pull-requests welcome!**
 Installation
 ------------
 
-1. ``pip install djangobars``
+1. Install ``pybars``, ``pymeta``, and ``djangobars``::
+
+    pip install git+git://github.com/mjumbewu/pymeta.git@master#egg=pymeta
+    pip install git+git://github.com/mjumbewu/pybars.git@master#egg=pybars
+    pip install djangobars
+
+  *NOTE that ``djangobars`` depends on particular versions of ``pymeta`` and
+  ``pybars``. If you add ``djangobars`` to a requirements file, be sure to add
+  these versions of ``pymeta`` and ``pybars`` first.*
 
 2. Add ``'djangobars'`` to your installed applications.
 
