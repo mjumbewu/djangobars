@@ -23,3 +23,9 @@ class Test_IncludeTemplateTag (TestCase):
         template = Template(u'{% load djangobars %}This is a Django template.  Handlebars is like: "{% include_handlebars "hello4.txt" %}".')
         value = template.render(Context({'user': 'Mjumbe'}))
         assert_equal(value, 'This is a Django template.  Handlebars is like: "Hello, Mjumbe, go to /blank_url!\n".')
+
+    @istest
+    def renders_from_app_folders(self):
+        template = Template(u'{% load djangobars %}This is a Django template.  Handlebars is like: "{% include_handlebars "hello6.txt" %}".')
+        value = template.render(Context({}))
+        assert_equal(value, 'This is a Django template.  Handlebars is like: "Hello, World!\n".')

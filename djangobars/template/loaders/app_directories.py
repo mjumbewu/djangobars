@@ -26,7 +26,10 @@ for app in settings.INSTALLED_APPS:
             raise ImproperlyConfigured('HANDLEBARS_APP_DIRNAMES must be a collection of strings, not %r' % (app_dir_names,))
 
         if os.path.isdir(template_dir):
-            app_template_dirs.append(template_dir.decode(fs_encoding))
+            if hasattr(template_dir, 'decode'):
+                # Python 2
+                template_dir = template_dir.decode(fs_encoding)
+            app_template_dirs.append(template_dir)
 
 # It won't change, so convert it to a tuple to save memory.
 app_template_dirs = tuple(app_template_dirs)
