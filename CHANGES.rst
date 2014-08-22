@@ -1,3 +1,11 @@
+0.1.4
+=====
+
+* Fix a bug in the app directories template loader where the path names were
+  calling ``decode`` in Python 2 *and* 3.
+
+
+
 0.1.3
 =====
 
