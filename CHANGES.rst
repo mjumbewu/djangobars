@@ -1,3 +1,10 @@
+0.1.5
+=====
+
+* Allow arbitrary objects as context for templates.
+
+
+
 0.1.4
 =====
 
