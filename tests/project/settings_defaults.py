@@ -37,6 +37,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+SECRET_KEY = 'testkey'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = rel_path('static'),
 STATICFILES_FINDERS = (
@@ -45,7 +46,8 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-SECRET_KEY = 'testkey'
+MIDDLEWARE_CLASSES = ()
+
 SITE_ID = 1
 ROOT_URLCONF = 'project.urls'
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
