@@ -19,6 +19,18 @@ class Test_IncludeTemplateTag (TestCase):
         assert_equal(value, 'This is a Django template.  Handlebars is like: "Hello, Mjumbe!\n".')
 
     @istest
+    def renders_a_template_with_a_nested_context(self):
+        template = Template(u'{% load djangobars %}This is a Django template.  Handlebars is like: "{% include_handlebars "hello2.txt" data %}".')
+        value = template.render(Context({'data': {'name': 'Mjumbe'}}))
+        assert_equal(value, 'This is a Django template.  Handlebars is like: "Hello, Mjumbe!\n".')
+
+    @istest
+    def renders_a_template_with_a_non_dict_nested_context(self):
+        template = Template(u'{% load djangobars %}This is a Django template.  Handlebars is like: "{% include_handlebars "hello8.txt" data %}".')
+        value = template.render(Context({'data': 'Mjumbe'}))
+        assert_equal(value, 'This is a Django template.  Handlebars is like: "Hello, Mjumbe!\n".')
+
+    @istest
     def renders_a_template_with_helper_functions(self):
         template = Template(u'{% load djangobars %}This is a Django template.  Handlebars is like: "{% include_handlebars "hello4.txt" %}".')
         value = template.render(Context({'user': 'Mjumbe'}))
