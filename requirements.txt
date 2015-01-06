@@ -1,6 +1,6 @@
 django
 git+https://github.com/mjumbewu/pymeta.git@1567444#egg=pymeta==git-1567444
-git+https://github.com/mjumbewu/pybars.git@4c8d619#egg=pybars==git-4c8d619
+git+https://github.com/mjumbewu/pybars.git@ae9a949#egg=pybars==git-ae9a949
 
 # ==========
 # Testing
