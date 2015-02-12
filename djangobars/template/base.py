@@ -6,6 +6,33 @@ try:
 except NameError:
     strtype = str
 
+class PartialList():
+    """
+    If the code references a partial in the template directory, then
+    load and render the template
+    """
+    partials = None
+
+    def __init__(self, partials=None):
+        if partials is not None:
+            self.partials = partials
+        else:
+            self.partials = {}
+
+    def __contains__(self, key):
+        return self.partials.has_key(key)
+
+    def __getitem__(self, partial_name):
+        if not self.partials.has_key(partial_name):
+            from djangobars.template.loader import get_template
+            template = get_template(partial_name)
+            if template:
+                self.partials[partial_name] = template.fn
+        return self.partials.get(partial_name)
+
+    def __setitem__(self, key, val):
+        self.partials[key] = val
+
 
 class HandlebarsTemplate (object):
     PARTIALS = {}
@@ -17,7 +44,7 @@ class HandlebarsTemplate (object):
         self.fn = c.compile(template_string)
         self.name = name
         self.helpers = _djangobars_['helpers'].copy()
-        self.partials = partials
+        self.partials = PartialList(partials)
 
         if is_partial:
             self.partials[name] = self.fn
