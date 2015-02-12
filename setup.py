@@ -27,8 +27,8 @@ setup(
     url="https://github.com/mjumbewu/djangobars/",
     packages=find_packages(),
     install_requires=[
-        "pymeta",
-        "pybars"
+        "PyMeta3",
+        "pybars3"
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
