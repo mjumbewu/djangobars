@@ -1,6 +1,13 @@
 0.2.0
 =====
 
+* Update the installation instructions.
+
+
+
+0.2.0
+=====
+
 * New dependencies on pymeta3 and pybars3.
 * Include partials of other templates in the project.
 
