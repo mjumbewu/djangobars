@@ -20,15 +20,19 @@ class PartialList():
             self.partials = {}
 
     def __contains__(self, key):
-        return self.partials.has_key(key)
+        return self.get(key) is not None
 
     def __getitem__(self, partial_name):
-        if not self.partials.has_key(partial_name):
+        if partial_name not in self.partials:
             from djangobars.template.loader import get_template
             template = get_template(partial_name)
             if template:
                 self.partials[partial_name] = template.fn
         return self.partials.get(partial_name)
+
+    def get(self, partial_name, default=None):
+        try: return self[partial_name]
+        except KeyError: return default
 
     def __setitem__(self, key, val):
         self.partials[key] = val
