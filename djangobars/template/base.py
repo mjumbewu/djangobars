@@ -6,6 +6,15 @@ try:
 except NameError:
     strtype = str
 
+class FakeError(Exception):
+    pass
+
+try:
+    from pybars import PybarsError
+except ImportError:
+    PybarsError = FakeError
+
+
 class PartialList():
     """
     If the code references a partial in the template directory, then
@@ -38,7 +47,7 @@ class PartialList():
         self.partials[key] = val
 
 
-class HandlebarsTemplate (object):
+class HandlebarsTemplate(object):
     PARTIALS = {}
 
     def __init__(self, template_string, origin=None,
@@ -53,6 +62,11 @@ class HandlebarsTemplate (object):
         if is_partial:
             self.partials[name] = self.fn
 
+    def _compile_partial(self, partial_name):
+        from djangobars.template.loader import get_template
+        template = get_template(partial_name)
+        self.partials[partial_name] = template.fn
+
     def render(self, context):
         if hasattr(context, 'render_context'):
             context.render_context.push()
@@ -62,11 +76,18 @@ class HandlebarsTemplate (object):
                 context, helpers=self.helpers, partials=self.partials)
             return strtype(s)
         except KeyError as e:
-            from djangobars.template.loader import get_template
             partial_name = strtype(e).strip("'")
-            template = get_template(partial_name)
-            self.partials[partial_name] = template.fn
+            self._compile_partial(partial_name)
             return self.render(context)
+        except PybarsError as e:
+            #support for Pybars 0.8+
+            err = e.message
+            if err.startswith('Partial') and err.find('not defined'):
+                partial_name = err[err.index('"')+1:err.rindex('"')]
+                self._compile_partial(partial_name)
+                return self.render(context)
+            else:
+                raise
         finally:
             if hasattr(context, 'render_context'):
                 context.render_context.pop()
